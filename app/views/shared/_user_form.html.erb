@@ -1,0 +1,61 @@
+
+<%= render 'layouts/form_errors' %>
+
+<!--%= render 'shared/error_messages', object: f.object %-->
+<% if current_page?(signup_path) %>
+<div class="inner table">
+	 <h1 class="subfirst signin">Sign Up</h1>
+<div class="inner signin reg">
+<% else %>
+<div class="inner table">
+	 <h1 class="subfirst signin">Sign In</h1>
+<div class="inner signin reg">
+<% end %>
+
+	<fieldset>
+	<!-- Text input-->
+	<div class="control-group">
+	  <label class="control-label" for="textinput">Net-ID</label>
+	  <div class="controls">
+	  	<%= f.text_field :net_id,:placeholder =>"Duke Net-ID" %>
+	  </div>
+	</div>
+
+	<!-- Password input-->
+	<div class="control-group">
+	  <label class="control-label" for="passwordinput">Password</label>
+	  <div class="controls">
+	  	<%= f.password_field :password,:placeholder=>"Enter Your Password" %>
+	  </div>
+	</div>
+
+<% if current_page?(signup_path) %>
+
+	<!-- Password input-->
+	<div class="control-group">
+	  <label class="control-label" for="passwordinput">Confirmation</label>
+	  <div class="controls">
+	  	<%= f.password_field :password_confirmation,:placeholder=>"Re-enter Your Password" %>
+	  </div>
+	</div>
+
+	<!-- Multiple Radios -->
+	<div class="control-group">
+	  <label class="control-label" for="radios">Are you a...</label>
+	  <div class="controls">
+	    <label class="radio" for="radios-0">
+	      <div><%= f.radio_button :instructor, false, :checked => true %></div>
+	      Student
+	    </label>
+	    <label class="radio" for="radios-1">
+	      <div><%= f.radio_button :instructor, true %></div>
+	      Instructor
+	    </label>
+	  </div>
+	</div>
+
+<% end %>
+	</fieldset>
+</div>
+</div>
+

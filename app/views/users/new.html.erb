@@ -1,0 +1,8 @@
+<% provide(:title, 'Sign Up') %>
+<div class="stripe signin">
+	<h1 class="subfirst fill"></h1>
+	<%= form_for(@user) do |f| %>
+		<%= render 'shared/user_form' , f:f %>
+		<%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block" %>
+	<% end %>
+</div>

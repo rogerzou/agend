@@ -1,0 +1,8 @@
+<div class="center">
+<h2>Edit Account</h2>
+<br />
+<%= form_for @user do |f| %>
+	<%= render '/shared/user_form', f: f %>
+	<%= f.submit "Edit Account" %>
+<% end %>
+</div>

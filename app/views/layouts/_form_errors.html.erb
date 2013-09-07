@@ -1,0 +1,8 @@
+<!-- Display form errors -->
+
+<% if @user && @user.errors.any? %>
+	<% @user.errors.full_messages.each do |m| %>
+		<li> <%= m %></li>
+	<% end %>
+<% end %>
+<br />

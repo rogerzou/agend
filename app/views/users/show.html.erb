@@ -1,0 +1,163 @@
+  <% if !current_user.instructor %>
+    <h1 class="welcome">Your Instructors</h1>
+    <div class="profcontainer-in">
+      <div>
+        <div class="center-side">
+          <%= render 'search_form' %>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <h4> Your Courses: </h4>
+        <%= render @courses %>
+      </div>
+    </div>
+
+  <% else %>
+    <h1 class="welcome">Create New Session</h1>
+    <div class="profcontainer-in">
+      <div class="inner table profile hour bottom prof">
+        <div class="inner signin">
+          <%= render 'office_hours/office_hours_form' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+
+</div>
+
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DEPRECATED 8/30/13 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+<% if false %>
+<!--
+
+<div class="row-fluid">
+  
+<% if @user.priority == 'instructor'%>
+	<div class="span6">
+    <div class="inner table profile hour top prof">
+      <div class="inner signin top">
+    <% provide(:title, @user.first_name + " " + @user.last_name) %>
+        <h1 class="welcome">Hello, <%= @user.first_name + "!" %></h1>
+      </div>
+    </div>
+    <div class="inner table profile hour bottom prof">
+      <div class="inner signin">
+        <% if @user.priority == 'instructor'%>
+          <%= render 'office_hours/office_hours_form' %>
+        
+        <%end %>
+      </div>
+    </div>
+    <% if current_user.priority == 'student' %>
+    <div class="inner table profile index head side prof" >
+          <div class="inner posts head">
+            <h4 class="welcome"> Updates </h4>
+          </div>
+        </div>
+    
+        <div class="inner table profile index posts side prof">
+          <%= render 'index' %>
+        </div>
+        <% end %>
+	</div>
+<% else %>
+  <div class="span6">
+    <div class="inner table profile hour top">
+      <div class="inner signin top">
+    <% provide(:title, @user.first_name + " " + @user.last_name) %>
+        <h1 class="welcome">Hello, <%= @user.first_name + "!" %></h1>
+      </div>
+    </div>
+    <div class="inner table profile hour bottom">
+      <div class="inner signin">
+        <% if @user.priority == 'instructor'%>
+          <%= render 'office_hours/office_hours_form' %>
+        <% elsif @user.priority == 'admin' %>
+          You are an admin. Manage users to the right.
+        <% elsif @user.priority == 'student' %>
+         <div>
+          <div class="center-side">
+            <%= render 'search_form' %>
+          </div>  
+         </div>
+         <br><br>
+         <div> 
+          <h4> Your Instructors: </h4>
+          <%= render @relationships %>
+         </div>
+        <%end %>
+      </div>
+    </div>
+    <% if current_user.priority == 'student' %>
+    <div class="inner table profile index head side" >
+          <div class="inner posts head">
+            <h4 class="welcome"> Updates </h4>
+          </div>
+        </div>
+    
+        <div class="inner table profile index posts side">
+          <%= render 'index' %>
+        </div>
+        <% end %>
+  </div>
+
+<% end %>
+
+  
+	<div class="span6">
+    
+    <% if current_user.priority == 'student' %>
+        <div class="inner table profile index head" >
+          <div class="inner posts head">
+            <h4 class="welcome"> Weekly Office Hour Sessions </h4>
+          </div>
+        </div>
+
+        <div class="inner table profile index posts">
+          <%= render 'office_hours/student_default', default_hours: @student_total %>
+        </div>
+
+        
+    <% end %>
+
+    <% if current_user.priority == 'instructor' %>
+        <div class="inner table profile index head" >
+          <div class="inner posts head">
+            <h4 class="welcome"> Default Sessions </h4>
+          </div>
+        </div>
+        <div class="inner table profile index posts">
+          <%= render 'office_hours/instructor_default', office_hours: @office_hours %>
+        </div>
+        <div class="inner table profile index head" >
+          <div class="inner posts head">
+            <h4 class="welcome"> Additional Sessions </h4>
+          </div>
+        </div>
+        <div class="inner table profile index posts">
+          <%= render 'index' %>
+        </div>
+    <% end %>
+    <% if current_user.priority == 'admin' %>
+      <div class="inner table profile index head" >
+          <div class="inner posts head">
+            <h4 class="welcome"> Users </h4>
+          </div>
+      </div>
+        <div class="inner table profile index posts">
+          <%= render 'index' %>
+        </div>
+    <% end %>
+	</div>
+  
+</div>
+
+-->
+<% end %>
