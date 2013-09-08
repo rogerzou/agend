@@ -27,6 +27,9 @@ class UsersController < ApplicationController
 	def show
 		@allCourses = Course.all
 		@courses = current_user.courses
+		if (current_user.instructor)
+			redirect_to controller: "courses", action: "show"
+		end
 	end
 
 	def destroy
@@ -35,7 +38,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit( :net_id, :password, :password_confirmation)
+    params.require(:user).permit( :net_id, :password, :password_confirmation, :instructor)
   end
 
 end

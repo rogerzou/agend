@@ -1,13 +1,28 @@
+=begin
+
+t.string :net_id
+t.string :ldapkey
+t.string :display_name
+t.string :givenName
+t.string :sn
+t.string :password_digest
+t.string :remember_token
+t.boolean :instructor, default: false
+
+t.timestamps
+
+=end
+
 class User < ActiveRecord::Base
 	
 	has_many :courses
   before_save :create_remember_token
   
   has_secure_password
-  validates :net_id, presence: true
+  validates :net_id, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 5 }
   validates :password_confirmation, presence: true
-
+  validates :instructor, presence: true
 
   def authenticate_duke
   	require "net/http"

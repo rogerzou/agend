@@ -5,8 +5,8 @@
 			<%= link_to "Find Instructors", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
 			<%= link_to "Office Hours", course_path, class:"btn btn-primary btn-xlarge side btn-block" %>
 		<% else %>
-			<%= link_to "Create Session", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
-			<%= link_to "Current Sessions", office_hour_path, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<%= link_to "Create New Session", course_path, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<%= link_to "Manage Sessions", course_path, class:"btn btn-primary btn-xlarge side btn-block" %>
 		<% end %>
 	<% end %>
 </div>
