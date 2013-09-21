@@ -1,7 +1,7 @@
 	<div class="office-hour inst hidden-phone">
 		<div class="office-text">
 			<% if office_hour.default %>
-				<i class="course"><%d = office_hour.course%> <%=d%></i>
+				<i class="course"><%d = office_hour.course.course_title_long %> <%=d%></i>
 				<br>
 
 				<i>Time:</i>&nbsp;<%a = office_hour.date.strftime('%I:%M %p')%> <%=a%> <i>to</i> 
@@ -29,7 +29,7 @@
 		<div class="office-hour inst visible-phone">
 		<div class="office-text-mobile">
 			<% if office_hour.default %>
-				<i class="course"><%d = office_hour.course%> <%=d%></i>
+				<i class="course"><%d = office_hour.course.course_title_long %> <%=d%></i>
 				<br>
 						<i class="mini-mobile">
 							<%a = office_hour.date.strftime('%I:%M %p') %> <%=a%> to 

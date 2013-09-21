@@ -2,13 +2,16 @@ class CoursesController < ApplicationController
 
 	def create
 		@newCourse = current_user.courses.new(crse_id: params[:course_id])
-		if @newCourse.requestDukeAPI_courses && @newCourse.save
-			redirect_to user_path(current_user)
-			flash[:success] = @newCourse.course_title_long + " added!"
+		if @newCourse.requestDukeAPI_courses
+		 	if @newCourse.save
+				flash[:success] = @newCourse.course_title_long + " added!"
+			else
+				flash[:error] = "Course ID already used!"
+			end
 		else
 			flash[:error] = "Invalid Course ID"
-			redirect_to user_path(current_user)
 		end
+		redirect_to user_path(current_user)
 	end
 
 	def show

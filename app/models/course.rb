@@ -20,6 +20,8 @@ class Course < ActiveRecord::Base
 	belongs_to :user
 	has_many :office_hours, dependent: :destroy
 
+    validates :crse_id, uniqueness: true
+
     def requestDukeAPI_courses
         require "net/http"
         require "uri"
