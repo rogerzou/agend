@@ -2,33 +2,36 @@
   <li id="fat-menu" class="dropdown">
     
 
-
+    <li><%= link_to "Courses", current_user, class: "visible-phone" %><li>
+    <li><%= link_to "Office Hours", office_hours_path, class: "visible-phone" %><li>
+    <li><%= link_to "Sign out", signout_path, method: "delete", class: "visible-phone" %><li>
     
-    
 
-
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+    <% if !current_user.nil? %>
+    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown"><%= current_user.givenName %> <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 
 
      <!--  <%#= link_to "Current Sessions", office_hour_path %>  -->   
      
-      <% if !current_user.nil? %>
+
         <% if !current_user.instructor %>
           <li><%= link_to "Find Instructors", current_user %><li>
           
         <% else %>
-          <li><%= link_to "Create Session", current_user %><li>
+          <li><%= link_to "Courses", current_user, class: "hidden-phone" %><li>
+          <li><%= link_to "Office Hours", office_hours_path, class: "hidden-phone" %><li>
           
         <% end %>
-      <% end %>
+
 
       <li class="divider"></li>
       
       <li>
-        <%= link_to "Sign out", signout_path, method: "delete" %>
+        <%= link_to "Sign out", signout_path, method: "delete", class: "hidden-phone" %>
       </li>
     </ul>
+    <% end %>
   </li>
 
 <% else %>
