@@ -1,20 +1,46 @@
+<div class="visible-desktop visible-tablet">
 
-<div class="stripe" id="home">
-	<% if !flash.empty? %>
-    <div class="center-side">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
+  <div class="stripe" id="home">
+  	<% if !flash.empty? %>
+      <div class="center-side">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="row-fluid">
+      <br>
+      <%= image_tag("icon_main.png", :class => "img") %>
+      
+      <h2 class="subfirst">Office Hours Made Simpler.</h2>
+      <br>
+      <%= link_to "Register", new_user_path, class: "btn btn-primary btn-xlarge btn-block"%>
+      <br>
+      <%= image_tag("front_page.png", :class => "img") %>
     </div>
-  <% end %>
-  <div class="row-fluid">
-    <br>
-    <%= image_tag("icon_main.png", :class => "img") %>
-    
-    <h2 class="subfirst">Office Hours Made Simpler.</h2>
-    <br>
-    <%= link_to "Register", signup_path, class: "btn btn-primary btn-xlarge btn-block"%>
-    <br>
-    <%= image_tag("front_page.png", :class => "img") %>
+  </div>
+</div>
+
+<div class="visible-phone">
+  <div class="stripe mobile" id="home">
+    <div class="phone-margin">
+      <% if !flash.empty? %>
+        <div class="center-side">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="row-fluid">
+        <br>
+        <%= image_tag("icon_main.png", :class => "img") %>
+        
+        <h2 class="subfirst">Office Hours Made Simpler.</h2>
+        <br>
+        <%= link_to "Register", new_user_path, class: "btn btn-primary btn-xlarge btn-block"%>
+        <br>
+        <%= image_tag("front_page.png", :class => "img") %>
+      </div>
+    </div>
   </div>
 </div>

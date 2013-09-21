@@ -1,1 +1,22 @@
-<h1> Hello </h1>
+<% if !current_user.instructor %>
+  <h1 class="welcome">My Office Hours</h1>
+<% else %>
+  <h1 class="welcome">@thisCourse.course_title_long</h1>
+<% end %>
+
+<div class="profcontainer-in">
+  <% if !current_user.instructor %>
+    <div>
+      <div class="center-side">
+      </div>
+    </div>
+    <br><br>
+  <% else %>
+    <div>
+      <%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
+    </div>
+  <% end %>
+  <div>
+    <%= render @myHours %>
+  </div>
+</div>

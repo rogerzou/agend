@@ -2,7 +2,7 @@
 <%= render 'layouts/form_errors' %>
 
 <!--%= render 'shared/error_messages', object: f.object %-->
-<% if current_page?(signup_path) %>
+<% if current_page?(new_user_path) %>
 <div class="inner table">
 	 <h1 class="subfirst signin">Sign Up</h1>
 <div class="inner signin reg">
@@ -29,7 +29,7 @@
 	  </div>
 	</div>
 
-<% if current_page?(signup_path) %>
+<% if current_page?(new_user_path) %>
 
 	<!-- Password input-->
 	<div class="control-group">
@@ -44,7 +44,7 @@
 	  <label class="control-label" for="radios">Are you a...</label>
 	  <div class="controls">
 	    <label class="radio" for="radios-0">
-	      <div><%= f.radio_button :instructor, false, :checked => true %></div>
+	      <div><%= f.radio_button :instructor, false %></div>
 	      Student
 	    </label>
 	    <label class="radio" for="radios-1">

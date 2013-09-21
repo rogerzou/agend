@@ -45,9 +45,13 @@
   padding: 7px 14px;
   font-size: 10px;
   background:#FF0000;
+  
+  float:left;
+
 }
 .btn-xlarge.del.inst{
   float:right;
+
 }
 .btn-xlarge.drop{
   padding: 7px 14px;
@@ -68,10 +72,9 @@
   position:relative;
   left:35px;
 }
-.btn-form{
-  float:center;
-  margin-top:200px;
 
+.btn-phone{
+  width:100%;
 }
 
 .btn-large{

@@ -18,26 +18,51 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-	<%= render 'layouts/shim' %>
+  <%= render 'layouts/shim' %>
 </head>
 
 <body>
-  <%= render 'layouts/header' %>
-  <div class="custom-top-padding">
-    <% if current_page? (root_url) or current_page? (signin_path) or current_page? (signup_path)%>  
+  <div class="visible-desktop visible-tablet">
+    <%= render 'layouts/header' %>
+    <div class="custom-top-padding">
+      <% if current_page? (root_url) or current_page? (new_session_path) or current_page? (new_user_path)%>   
+        <%= yield %> 
+      <% else %>
+        <div class="row-fluid user">
+          <div class="span3 profside">
+            <%= render 'layouts/side_bar' %>
+          </div>
+          <div class="span9 profcontainer">
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+          </div>
+        </div>
+      <% end %>
+    <%#= debug(params) if Rails.env.development? %>
+    </div>
+  </div>
+
+  <div class="visible-phone">
+    <%= render 'layouts/header' %>
+    
+    <% if current_page? (root_url) or current_page? (new_session_path) or current_page? (new_user_path)%>   
       <%= yield %> 
     <% else %>
       <div class="row-fluid user">
-        <div class="span3 profside">
+        <!-- <div class="prof-mobile">
           <%= render 'layouts/side_bar' %>
-        </div>
-        <div class="span9 profcontainer">
+        </div> -->
+        <div class="prof-mobile">
           <%= render 'layouts/messages' %>
           <%= yield %>
         </div>
       </div>
     <% end %>
-  <%#= debug(params) if Rails.env.development? %>
+    <%#= debug(params) if Rails.env.development? %>
+    
+  </div>
+
+
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="/assets/javascripts/smoothscroll.js"></script>

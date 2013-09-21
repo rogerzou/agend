@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :password_digest
     	t.string :remember_token
     	t.boolean :instructor, default: false
+      t.text :student_courses
 
       t.timestamps
     end
@@ -16,4 +17,5 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :net_id
 		add_index :users, :remember_token, unique: true
   end
+
 end

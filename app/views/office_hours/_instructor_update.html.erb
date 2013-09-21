@@ -1,0 +1,44 @@
+<div class="office-hour inst hidden-phone">
+	<div class="office-text">
+		<% if !office_hour.default %>
+			<i class="course"><%d = office_hour.course%> <%=d%></i>
+			<br>
+			<i>Time:</i>&nbsp;<%a = office_hour.date.strftime('%m/%d/%Y | %I:%M %p')%> <%=a%> <i>to</i> <%b = office_hour.end_time.strftime('%I:%M %p')%> <%=b%>
+			<br>
+			<i>Location:</i>&nbsp;<%c = office_hour.location%> <%=c%>
+			<br>
+			<i>Description:</i>&nbsp;<%c = office_hour.description%> <%=c%>
+			<br>
+			<% if current_user.instructor %>
+			<%= link_to "delete", office_hour, method: :delete,  class: "btn btn-primary btn-xlarge del inst btn-block",
+			                              data: { confirm: "You sure?" } %>
+			<% end %>
+			<br>
+		<% end %>
+	</div>
+</div>
+
+<div class="office-hour inst visible-phone">
+	<div class="office-text-mobile">
+		<% if !office_hour.default %>
+			<i class="course"><%d = office_hour.course%> <%=d%></i>
+			<br>
+				<i class="mini-mobile">
+							<%a = office_hour.date.strftime('%m/%d/%Y|%I:%M %p') %> <%=a%> to 
+							<%b = office_hour.end_time.strftime('%I:%M %p') %> <%=b%>
+					</i>
+
+			<br>
+			<i>Location:</i>&nbsp;<%c = office_hour.location%> <%=c%>
+			<br>
+			<i>Description:</i>&nbsp;<%c = office_hour.description%> <%=c%>
+			<br>
+			<% if current_user.instructor %>
+			<%= link_to "delete", office_hour, method: :delete,  
+			                              data: { confirm: "You sure?" } %>
+			<% end %>
+			<br>
+		<% end %>
+	</div>
+
+</div>

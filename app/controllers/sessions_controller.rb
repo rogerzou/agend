@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
       # Authenticate method added by 'has_secure_password'
     if user && user.authenticate(params[:session][:password])
       sign_in(user) # Helper method from SessionsHelper
-      flash[:success] = "Logged In!"
       # If user was redirected, return to original page. Otherwise, go to 'show' page
       redirect_to(session[:redirect] || user)
       # Delete the redirect key-value pair, if it exists
@@ -24,7 +23,6 @@ class SessionsController < ApplicationController
   
   def destroy
     sign_out
-    flash[:success] = "Signed out."
     redirect_to root_path
   end
 end

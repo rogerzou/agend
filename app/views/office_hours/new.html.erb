@@ -1,0 +1,41 @@
+
+<h1 class="welcome"> Create Office Hour </h1>
+
+<%= form_for(@office_hour) do |f| %>
+  <%= render 'layouts/messages', object: f.object %>
+  <div class="field">
+    <div class="span6 prof-form">
+
+            <%= f.label "Select Course:" %>
+      <%= f.select :course_id, @courses.collect {|p| p.crse_id }, { include_blank: true } %>
+
+      <%= f.label :date %>
+      <%= f.date_select :date, :start_year => Time.now.year, :end_year => Time.now.year + 4, :use_short_month => true %>
+    
+      <br>Start Time <br>
+      <%= f.time_select :start_time, :ignore_date => true, :ampm => true %>
+
+      <%= f.label :end_time %>
+      <%= f.date_select :end_time, :start_year => Time.now.year, :end_year => Time.now.year + 4, :use_short_month => true %>
+      <br>End Time <br>
+      
+      <%= f.time_select :end_time, :ignore_date => true, :ampm => true %>
+    </div>
+
+    <div class="span6 prof-form">
+      <%= f.text_area :location, placeholder: "Location:" %>
+
+      <%= f.text_area :description, placeholder: "Description:
+                            i.e. Day of the Week" %>
+    
+
+    <br>
+    <h4 class="check-text">Set as default?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :default, {checked: false} %></h4>
+    <h4 class="tiny">(Dates will be irrelevant for default office hours <br> --Please include Day of the Week above)</h4>
+    </div>
+    
+  </div>
+  <%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block btn-form hidden-phone" %>
+  <%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block btn-phone visible-phone" %>
+  
+<% end %>

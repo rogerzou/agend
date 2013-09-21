@@ -2,11 +2,11 @@
 <div class="profside-container">
 	<% if !current_user.nil? %>
 		<% if !current_user.instructor %>
-			<%= link_to "Find Instructors", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
-			<%= link_to "Office Hours", course_path, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<%= link_to "My Courses", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<%= link_to "My Office Hours", office_hours_path, class:"btn btn-primary btn-xlarge side btn-block" %>
 		<% else %>
-			<%= link_to "Create New Session", course_path, class:"btn btn-primary btn-xlarge side btn-block" %>
-			<%= link_to "Manage Sessions", course_path, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<%= link_to "Manage Courses", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<%= link_to "Manage Sessions", office_hours_path, class:"btn btn-primary btn-xlarge side btn-block" %>
 		<% end %>
 	<% end %>
 </div>

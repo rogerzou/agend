@@ -6,30 +6,54 @@ class UsersController < ApplicationController
 	  if (current_user.nil?)
 	  @user = User.new
 	  else
-	    redirect_to current_user
+	    redirect_to current_user 
 	  end
 	end
 
 	def create
 	  @user = User.new(user_params)
-	  if @user.authenticate_duke && @user.save
+	  if @user.requestDukeAPI_people && @user.save
 	    sign_in(@user)
-	    flash[:success] = "Account created!"
+	    flash[:success] = "Welcome to Agend!"
 	    redirect_to @user
 	  else
-	    render 'new'
+	  	flash[:error] = "Invalid NetID"
+	    render new_user_path
 	  end
 	end
 
-  def edit
-  end
+	def edit
+	end
   
 	def show
-		@allCourses = Course.all
-		@courses = current_user.courses
-		if (current_user.instructor)
-			redirect_to controller: "courses", action: "show"
+		@allCourses
+		@myCourses
+		if current_user.instructor # if instructor, myCourses is the list of all courses that user "has"
+			@myCourses = current_user.courses
+			@allCourses = Course.all
+		else	# if student, takes list of course ids
+			course_ids = Marshal.load(current_user.student_courses)
+			@myCourses = Course.where(crse_id: course_ids)
+			@allCourses = Course.all - @myCourses
 		end
+	end
+
+	def student_add_course
+		if !current_user.nil?
+			course_ids = Marshal.load(current_user.student_courses)
+			course_ids.push(params[:course_id])
+			current_user.update_attribute(:student_courses, Marshal.dump(course_ids))
+		end
+		redirect_to user_path(current_user)
+	end
+
+	def student_remove_course
+		if !current_user.nil?
+			course_ids = Marshal.load(current_user.student_courses)
+			course_ids.delete(params[:course_id])
+			current_user.update_attribute(:student_courses, Marshal.dump(course_ids))
+		end
+		redirect_to user_path(current_user)
 	end
 
 	def destroy
@@ -38,7 +62,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit( :net_id, :password, :password_confirmation, :instructor)
+    params.require(:user).permit(:id, :net_id, :password, :password_confirmation, :instructor, :student_courses)
   end
 
 end

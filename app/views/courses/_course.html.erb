@@ -1,0 +1,17 @@
+<div class="instructors">
+	<% a = course.class_nbr.to_s + "- " + course.subject + ", " + course.course_title_long %> 
+	<%= link_to a, course_path(course) %>
+	<% if current_user.instructor %>
+		<%= form_for(course, html: { method: :delete }) do |f| %>
+			<div class="right-side">
+				<%= f.submit "Delete", class: "btn btn-primary btn-xlarge del btn-block" %>
+			</div>
+		<% end %>
+	<% else %>
+		<%= form_tag(controller: "users", action: "student_remove_course") do %>
+			<div class="right-side">
+			<%= hidden_field_tag 'course_id', course.crse_id %>
+		<%= submit_tag ("Delete"), class: "btn btn-primary btn-xlarge del btn-block" %>
+		<% end %>
+	<% end %>
+</div>

@@ -1,0 +1,7 @@
+<% if current_user.instructor %>
+	<%= render '/office_hours/instructor_default', office_hour: office_hour %>
+	<%= render '/office_hours/instructor_update', office_hour: office_hour %>
+<% else %>
+	<%= render '/office_hours/student_default', office_hour: office_hour %>
+	<%= render '/office_hours/student_update', office_hour: office_hour %>
+<% end %>

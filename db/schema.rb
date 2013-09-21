@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20130906230105) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "instructor",      default: false
+    t.text     "student_courses"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

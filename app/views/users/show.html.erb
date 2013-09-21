@@ -1,25 +1,28 @@
 <% if !current_user.instructor %>
-  <h1 class="welcome">Your Courses</h1>
-  <div class="profcontainer-in">
+  <h1 class="welcome">My Courses</h1>
+<% else %>
+  <h1 class="welcome">Manage Courses</h1>
+<% end %>
+
+<div class="profcontainer-in">
+  <% if !current_user.instructor %>
     <div>
       <div class="center-side">
         <%= render 'search_form' %>
       </div>
     </div>
     <br><br>
+  <% else %>
     <div>
-      <h4> Your Courses: </h4>
-      <%= render @courses %>
+      <%= form_tag(controller: "courses", action: "create") do %>
+        <%= text_field_tag :course_id, "", placeholder: "Course ID" %>
+      <%= submit_tag "Add Course ID", controller: "courses", action: "create", class: "btn" %>
+      <% end %>
     </div>
+    <%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
+  <% end %>
+  <div>
+    <h4> Your Courses: </h4>
+    <%= render @myCourses %>
   </div>
-
-<% else %>
-  <h1 class="welcome">Manage Courses</h1>
-  <div class="profcontainer-in">
-    <div class="inner table profile hour bottom prof">
-      <div class="inner signin">
-        <!--%= render 'courses/course_form' %-->
-      </div>
-    </div>
-  </div>
-<% end %>
+</div>

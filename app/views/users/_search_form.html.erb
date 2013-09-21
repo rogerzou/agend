@@ -4,23 +4,17 @@
 
 	<ul class="dropdown-menu outer" role="menu" aria-labelledby="dropdownMenu">
 
-		<div class="drop-limit">	
+		<div class="drop-limit">
 			
 		<% @allCourses.sort { |a,b| a.course_title_long.downcase <=> b.course_title_long.downcase }.each do |course| %>
-			<% if !current_user.instructor %>
-				
-				<%= form_for(current_user.courses.build(course_id: course.id)) do |f| %>
-				<div><%= f.hidden_field :course_id %></div>
-				<%= f.submit (course.course_title_long), class: "btn" %>
-				
-				<% end %>
-				
-				<li class="divider"></li>
+			<%= form_tag(controller: "users", action: "student_add_course") do %>
+				<div><%= hidden_field_tag 'course_id', course.crse_id %></div>
+				<%= submit_tag (course.course_title_long + "," + course.crse_id.to_s), class: "btn" %>
 			<% end %>
+			<li class="divider"></li>
 		<% end %>
-		
+
 		</div>
 
 	</ul>
 </div>
-

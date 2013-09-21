@@ -2,15 +2,20 @@ Agend::Application.routes.draw do
 
   root 'static_pages#home'
   
-  resources :users
+  resources :users do
+    member do
+      post 'student_add_course'
+      post 'student_remove_course'
+    end
+  end
+
+
   resources :sessions
   resources :courses
   resources :office_hours
 
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   
   # The priority is based upon order of creation: first created -> highest priority.
