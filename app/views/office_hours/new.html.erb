@@ -7,7 +7,7 @@
     <div class="span6 prof-form">
 
             <%= f.label "Select Course:" %>
-      <%= f.select :course_id, @courses.collect {|p| p.crse_id }, { include_blank: true } %>
+      <%= f.select :course_id, @courses.collect {|p| [p.course_title_long, p.id] }, include_blank: true  %>
 
       <%= f.label :date %>
       <%= f.date_select :date, :start_year => Time.now.year, :end_year => Time.now.year + 4, :use_short_month => true %>

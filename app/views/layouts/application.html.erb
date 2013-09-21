@@ -25,6 +25,7 @@
   <div class="visible-desktop visible-tablet">
     <%= render 'layouts/header' %>
     <div class="custom-top-padding">
+      <%= render 'layouts/messages' %>
       <% if current_page? (root_url) or current_page? (new_session_path) or current_page? (new_user_path)%>   
         <%= yield %> 
       <% else %>
@@ -33,7 +34,6 @@
             <%= render 'layouts/side_bar' %>
           </div>
           <div class="span9 profcontainer">
-            <%= render 'layouts/messages' %>
             <%= yield %>
           </div>
         </div>

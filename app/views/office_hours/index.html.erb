@@ -1,7 +1,9 @@
 <h1 class="welcome">Manage Office Hours</h1>
+<% if current_user.instructor %>
+	<%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
+<% end %>
 
-<%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
-
+<h1 class="welcome">Default Hours</h1>
 <% @courses.each do |course| %>
 	<% course.office_hours.each do |office_hour| %>
 		<% if office_hour.default %>
@@ -10,7 +12,13 @@
 			<% else %>
 			<%= render 'student_default', office_hour: office_hour %>
 			<% end %>
-		<% else %>
+		<% end %>
+	<% end %>
+<% end %>
+<h1 class="welcome">Updates</h1>
+<% @courses.each do |course| %>
+	<% course.office_hours.each do |office_hour| %>
+		<% if !office_hour.default %>
 			<% if current_user.instructor %>
 			<%= render 'instructor_update', office_hour: office_hour %>
 			<% else %>

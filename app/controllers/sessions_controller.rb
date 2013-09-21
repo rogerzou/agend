@@ -16,8 +16,7 @@ class SessionsController < ApplicationController
       # Delete the redirect key-value pair, if it exists
       session.delete(:redirect)
     else
-      flash[:error] = "Invalid username or password"
-      render 'new'
+      redirect_to new_session_path, flash: { error: "Invalid username or password"}
     end
   end
   

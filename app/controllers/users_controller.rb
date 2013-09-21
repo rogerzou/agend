@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	
 	def new
 	  if (current_user.nil?)
-	  @user = User.new
+	  	@user = User.new
 	  else
 	    redirect_to current_user 
 	  end
@@ -17,8 +17,7 @@ class UsersController < ApplicationController
 	    flash[:success] = "Welcome to Agend!"
 	    redirect_to @user
 	  else
-	  	flash[:error] = "Invalid NetID"
-	    render new_user_path
+	    redirect_to new_user_path, flash: { error: "Invalid Net-ID" }
 	  end
 	end
 

@@ -1,13 +1,7 @@
 <% provide(:title, "Sign In") %>
 
 <div class="stripe signin visible-desktop">
-	<% if !flash.empty? %>
-	    <div class="center-side">
-	      <% flash.each do |key, value| %>
-	        <div class="alert alert-<%= key %>"><%= value %></div>
-	      <% end %>
-	    </div>
-  	<% end %>
+
       <h1 class="subfirst fill"></h1>
       	
         <%= form_for(:session, url: sessions_path) do |f| %>
@@ -20,13 +14,7 @@
 </div>
 
 <div class="stripe signin visible-phone">
-  <% if !flash.empty? %>
-      <div class="center-side">
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
-      </div>
-    <% end %>
+
       <h1 class="subfirst fill"></h1>
         
         <%= form_for(:session, url: sessions_path) do |f| %>

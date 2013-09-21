@@ -18,7 +18,7 @@
 class Course < ActiveRecord::Base
 
 	belongs_to :user
-	has_many :office_hours
+	has_many :office_hours, dependent: :destroy
 
     def requestDukeAPI_courses
         require "net/http"

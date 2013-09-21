@@ -15,7 +15,7 @@ t.timestamps
 
 class User < ActiveRecord::Base
 	
-	has_many :courses
+	has_many :courses, dependent: :destroy
  	before_create :create_remember_token, :student_courses_new
   
   has_secure_password
