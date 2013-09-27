@@ -1,29 +1,46 @@
-<h1 class="welcome">Manage Office Hours</h1>
-<% if current_user.instructor %>
-	<%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
-<% end %>
 
-<h1 class="welcome">Default Hours</h1>
-<% @courses.each do |course| %>
-	<% course.office_hours.each do |office_hour| %>
-		<% if office_hour.default %>
-			<% if current_user.instructor %>
-			<%= render 'instructor_default', office_hour: office_hour %>
-			<% else %>
-			<%= render 'student_default', office_hour: office_hour %>
+
+
+<h1 class="welcome">Weekly Hours</h1>
+<div class="inner table profile index posts">
+	<% if current_user.instructor %>
+		
+		<%= link_to "+ New Session", new_office_hour_path, class: "btn btn-primary btn-xlarge add side" %>
+	<% end %>
+	<% if @courses.length == 0 and !current_user.instructor%>
+		You currently do not have any office hour sessions.<br> 
+		Make sure to follow your courses and then check back!
+	
+
+	<% end %>
+	<% @courses.each do |course| %>
+		<% course.office_hours.each do |office_hour| %>
+			<% if office_hour.default %>
+				<% if current_user.instructor %>
+				<%= render 'instructor_default', office_hour: office_hour %>
+				<% else %>
+				<%= render 'student_default', office_hour: office_hour %>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
+</div>
 <h1 class="welcome">Updates</h1>
-<% @courses.each do |course| %>
-	<% course.office_hours.each do |office_hour| %>
-		<% if !office_hour.default %>
-			<% if current_user.instructor %>
-			<%= render 'instructor_update', office_hour: office_hour %>
-			<% else %>
-			<%= render 'student_update', office_hour: office_hour %>
+<div class="inner table profile index posts">
+	<% if @courses.length == 0 and !current_user.instructor%>
+		You currently do not have any updates on office hour sessions.
+	<% elsif @courses.length == 0 and current_user.instructor%>
+		Your changes to an office hour session will appear here.
+	<% end %>
+	<% @courses.each do |course| %>
+		<% course.office_hours.each do |office_hour| %>
+			<% if !office_hour.default %>
+				<% if current_user.instructor %>
+				<%= render 'instructor_update', office_hour: office_hour %>
+				<% else %>
+				<%= render 'student_update', office_hour: office_hour %>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
+</div>

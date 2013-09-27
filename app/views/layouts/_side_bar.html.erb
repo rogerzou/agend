@@ -2,11 +2,30 @@
 <div class="profside-container">
 	<% if !current_user.nil? %>
 		<% if !current_user.instructor %>
-			<%= link_to "My Courses", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
-			<%= link_to "My Office Hours", office_hours_path, class:"btn btn-primary btn-xlarge side btn-block" %>
+			<div class="sidebar-nav">
+				<div class="well">
+					<ul class="nav nav-list"> 
+					  <li class="nav-header">Welcome</li>        
+					  <li> <%= link_to "My Current Courses", current_user %> </li>
+					  <li> <%= link_to "My Office Hours", office_hours_path %> </li>
+					  
+					</ul>
+				</div>
+			</div>
+			
 		<% else %>
-			<%= link_to "Manage Courses", current_user, class:"btn btn-primary btn-xlarge side btn-block" %>
-			<%= link_to "Manage Sessions", office_hours_path, class:"btn btn-primary btn-xlarge side btn-block" %>
+
+			<div class="sidebar-nav">
+				<div class="well">
+					<ul class="nav nav-list"> 
+					  <li class="nav-header">Welcome</li>        
+					  <li> <%= link_to "Manage Courses", current_user %> </li>
+					  <li> <%= link_to "Manage Sessions", office_hours_path %> </li>
+					  
+					</ul>
+				</div>
+			</div>
+			
 		<% end %>
 	<% end %>
 </div>

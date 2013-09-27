@@ -16,13 +16,14 @@
     <div>
       <%= form_tag(controller: "courses", action: "create") do %>
         <%= text_field_tag :course_id, "", placeholder: "Course ID" %>
-      <%= submit_tag "Add Course ID", controller: "courses", action: "create", class: "btn" %>
+        <br>
+      <%= submit_tag "+ New ID", controller: "courses", action: "create", class: "btn btn-primary btn-xlarge add side" %>
       <% end %>
     </div>
-    <%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
+    
   <% end %>
   <div>
-    <h4> Your Courses: </h4>
+    
     <%= render @myCourses %>
   </div>
 </div>
