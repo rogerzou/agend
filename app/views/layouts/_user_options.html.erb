@@ -9,18 +9,19 @@
 
     <% if !current_user.nil? %>
     <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown"><%= current_user.givenName %> <b class="caret"></b></a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+    <ul class="dropdown-menu custom" role="menu" aria-labelledby="dropdownMenu">
 
 
      <!--  <%#= link_to "Current Sessions", office_hour_path %>  -->   
      
 
         <% if !current_user.instructor %>
-          <li><%= link_to "Find Instructors", current_user %><li>
+          <li><%= link_to "Find Courses", current_user %><li>
+          <li><%= link_to "My Office Hours", office_hours_path, class: "hidden-phone" %><li>
           
         <% else %>
-          <li><%= link_to "Courses", current_user, class: "hidden-phone" %><li>
-          <li><%= link_to "Office Hours", office_hours_path, class: "hidden-phone" %><li>
+          <li><%= link_to "Manage Courses", current_user, class: "hidden-phone" %><li>
+          <li><%= link_to "Manage Office Hours", office_hours_path, class: "hidden-phone" %><li>
           
         <% end %>
 
