@@ -11,7 +11,7 @@
     t.string    :ssr_mtg_sched_long
     t.string    :ssr_instr_long
     t.string    :ssr_mtg_dt_long
-    t.string  :ssr_mtg_loc_long
+    t.string    :ssr_mtg_loc_long
 =end
 
 
@@ -34,25 +34,45 @@ class Course < ActiveRecord::Base
             uri = URI.parse(url + query + crse_id + token_string + access_token)
             response = Net::HTTP.get_response(uri)
             json_user_object = JSON.parse(response.body)
-            if !json_user_object.nil? && json_user_object.length == 1
-                json_subject = json_user_object["ssr_get_classes_resp"]["search_result"]["subjects"]["subject"]
-                self.subject = json_subject["subject_lov_descr"];
-                self.catalog_nbr = json_subject["catalog_nbr"]
-                self.institution = json_subject["institution_lov_descr"]
-                self.acad_career = json_subject["acad_career_lov_descr"]
-                self.course_title_long = json_subject["course_title_long"]
-                json_class = json_subject["classes_summary"]["class_summary"]
-                self.class_nbr = json_class["class_nbr"]
-                self.ssr_component = json_class["ssr_component"]
-                json_sched = json_class["classes_meeting_patterns"]["class_meeting_pattern"]
-                self.ssr_mtg_sched_long = json_sched["ssr_mtg_sched_long"]
-                self.ssr_instr_long = json_sched["ssr_instr_long"]
-                self.ssr_mtg_dt_long = json_sched["ssr_mtg_dt_long"]
-                self.ssr_mtg_loc_long = json_sched["ssr_mtg_loc_long"]
+            puts JSON.pretty_generate(json_user_object)
+            if !json_user_object.nil? && json_user_object.length == 1 && JSONQuery(json_user_object, "error_warn_text").nil?
+                JSONQuery(json_user_object, "error_warn_text")
+                self.subject = JSONQuery(json_user_object, "subject")
+                self.catalog_nbr = JSONQuery(json_user_object, "catalog_nbr")
+                self.institution = JSONQuery(json_user_object, "institution")
+                self.acad_career = JSONQuery(json_user_object, "acad_career")
+                self.course_title_long = JSONQuery(json_user_object, "course_title_long")
+                self.class_nbr = JSONQuery(json_user_object, "class_nbr")
+                self.ssr_component = JSONQuery(json_user_object, "ssr_component")
+                self.ssr_mtg_sched_long = JSONQuery(json_user_object, "ssr_mtg_sched_long")
+                self.ssr_instr_long = JSONQuery(json_user_object, "ssr_instr_long")
+                self.ssr_mtg_dt_long = JSONQuery(json_user_object, "ssr_mtg_dt_long")
+                self.ssr_mtg_loc_long = JSONQuery(json_user_object, "ssr_mtg_loc_long")
+                puts self.subject
+                puts self.catalog_nbr
+                puts self.institution
+                puts self.acad_career
+                puts self.course_title_long
+                puts self.class_nbr
+                puts self.ssr_component
+                puts self.ssr_mtg_sched_long 
+                puts self.ssr_instr_long
+                puts self.ssr_mtg_dt_long
+                puts self.ssr_mtg_loc_long
                 return true
+
             end
         end
         return false
     end
 
+    def JSONQuery(obj,key)
+        if obj.respond_to?(:key?) && obj.key?(key) && obj[key].is_a?(String)
+            obj[key]
+        elsif obj.respond_to?(:each)
+            r = nil
+            obj.find{ |*a| r = JSONQuery(a.last,key) }
+            r
+        end
+    end
 end

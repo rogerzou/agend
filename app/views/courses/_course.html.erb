@@ -1,5 +1,14 @@
 <div class="instructors">
-	<% a = course.class_nbr.to_s + "- " + course.subject + ", " + course.course_title_long %> 
+	<% a = "" %>
+	<% if !course.subject.nil? %>
+		<% a = a + course.subject.to_s + " " %>
+	<% end %>
+	<% if !course.catalog_nbr.nil? %>
+		<% a = a + course.catalog_nbr.to_s + ": " %>
+	<% end %>
+	<% if !course.course_title_long.nil? %>
+		<% a = a + course.course_title_long.to_s %>
+	<% end %>
 	<%= link_to a, course_path(course) %>
 	<% if current_user.instructor %>
 		<%= form_for(course, html: { method: :delete }) do |f| %>
