@@ -8,7 +8,8 @@
   <% if !current_user.instructor %>
     <div>
       <div class="center-side">
-        <%= render 'search_form' %>
+        <!--%= #render 'search_form' %-->
+        <%= link_to "+ Add Course", user_add_course_user_path, class: "btn btn-primary btn-xlarge add top side" %>
       </div>
     </div>
     <br><br>
