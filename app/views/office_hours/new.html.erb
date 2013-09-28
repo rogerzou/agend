@@ -1,5 +1,5 @@
 
-<h1 class="welcome"> Create Office Hour </h1>
+  <h1 class="welcome"> Create Office Hours </h1>
 
 <%= form_for(@office_hour) do |f| %>
   <div class="field profcontainer-in">
@@ -8,16 +8,22 @@
     <div class="span6 prof-form">
 
       <%= f.label "Please Select Course:" %>
-      <%= f.select :course_id, @courses.collect {|p| [p.course_title_long, p.id] }, include_blank: true  %>
+      <% if params[:thisCourse].nil? %>
+      <%= f.select :course_id, @courses.collect {|p| [p.course_title_long, p.id] }, 
+                include_blank: true  %>
+       <% else %>
+       <%= hidden_field_tag :thisCourse, params[:thisCourse] %>
+      <%= f.select :course_id, @courses.collect {|p| [p.course_title_long, p.id] }, 
+                selected: params[:thisCourse], include_blank: true  %>
+       <% end %>
 
       <%= f.text_area :location, placeholder: "Location:" %>
 
       <%= f.text_area :description, placeholder: "Description:
                             i.e. Day of the Week" %>
     
+     <%= f.hidden_field :default, value: params[:default] %></h4>
 
-      <h4 class="check-text">Set as default?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :default, {checked: false} %></h4>
-      <h4 class="tiny">(Dates will be irrelevant for default office hours)</h4>
     </div>
 
 
@@ -40,7 +46,13 @@
 
     
   </div>
+  <% if @thisCourse.nil? %>
   <%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block btn-form hidden-phone" %>
   <%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block btn-phone visible-phone" %>
+  <% else %>
+    <%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block btn-form hidden-phone" %>
+  <%= f.submit "Create", class: "btn btn-primary btn-xlarge btn-block btn-phone visible-phone" %>
+
+  <% end %>
   
 <% end %>

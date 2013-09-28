@@ -3,16 +3,32 @@ class OfficeHoursController < ApplicationController
 	def new
 		@office_hour = OfficeHour.new
 		@courses = current_user.courses
+=begin
+		@thisCourse = nil
+		if (!params[:thisCourse].nil?)
+			@thisCourse = Course.find(params[:thisCourse])
+		end
+		@default = false
+		if (!params[:default].nil?)
+			@default = params[:default]
+		end
+=end
 	end
 
 	def create
 		@newOfficeHour = OfficeHour.new(office_hour_params)
 		if @newOfficeHour && @newOfficeHour.save
 			flash[:success] = "New office hour added"
+			if params[:thisCourse].nil?
+				redirect_to office_hours_path
+			else
+				redirect_to course_path(params[:thisCourse])
+			end
 		else
 			flash[:error] = "Problem with adding office hour session."
+			redirect_to new_office_hour_path
 		end
-		redirect_to new_office_hour_path
+
 	end
 
 	def index
@@ -30,7 +46,12 @@ class OfficeHoursController < ApplicationController
 	def destroy
 		@office_hour = OfficeHour.find(params[:id])
 		@office_hour.destroy
-		redirect_to office_hours_path
+		puts params[:thisCourse]
+		if params[:thisCourse].nil?
+			redirect_to office_hours_path
+		else
+			redirect_to course_path(params[:thisCourse])
+		end
 	end
 
 	private

@@ -13,10 +13,13 @@
     <br><br>
   <% else %>
     <div>
-      <%= link_to "New Office Hour Session", new_office_hour_path, class: "btn" %>
+      <%= link_to "+ Default Session", new_office_hour_path(
+              thisCourse: @thisCourse.id, default: true), class: "btn" %>
+      <%= link_to "+ Update Session", new_office_hour_path(
+              thisCourse: @thisCourse.id, default: false), class: "btn" %>
     </div>
   <% end %>
   <div>
-    <%= render @myHours %>
+    <%= render @myHours, thisCourse: @thisCourse.id %>
   </div>
 </div>

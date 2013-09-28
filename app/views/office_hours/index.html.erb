@@ -1,11 +1,11 @@
 
-
-
 <h1 class="welcome">Weekly Hours</h1>
 <div class="inner table profile index posts">
 	<% if current_user.instructor %>
-		
-		<%= link_to "+ New Session", new_office_hour_path, class: "btn btn-primary btn-xlarge add side" %>
+
+		<%= link_to "+ New Session", new_office_hour_path(default: true), 
+						class: "btn btn-primary btn-xlarge add side" %>
+
 	<% end %>
 	<% if @courses.length == 0 and !current_user.instructor%>
 		You currently do not have any office hour sessions.<br> 
@@ -29,8 +29,14 @@
 <div class="inner table profile index posts">
 	<% if @courses.length == 0 and !current_user.instructor%>
 		You currently do not have any updates on office hour sessions.
-	<% elsif @courses.length == 0 and current_user.instructor%>
+	<% elsif @courses.length == 0 and current_user.instructor%>					
 		Your changes to an office hour session will appear here.
+	<% end %>
+	<% if current_user.instructor %>
+
+		<%= link_to "+ New Session", new_office_hour_path(default: false), 
+						class: "btn btn-primary btn-xlarge add side" %>
+
 	<% end %>
 	<% @courses.each do |course| %>
 		<% course.office_hours.each do |office_hour| %>

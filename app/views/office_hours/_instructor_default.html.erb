@@ -15,7 +15,7 @@
 				<br>
 				
 				<% if current_user.instructor %>
-				<%= link_to "delete", office_hour, method: :delete, class: "btn btn-primary btn-xlarge del inst btn-block",
+				<%= link_to "delete", office_hour, method: :delete, thisCourse: params[:thisCourse], class: "btn btn-primary btn-xlarge del inst btn-block",
 				                              data: { confirm: "You sure?" } %>
 				<% end %>
 				
