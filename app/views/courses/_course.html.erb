@@ -18,9 +18,10 @@
 		<% end %>
 	<% else %>
 		<%= form_tag(controller: "users", action: "student_remove_course") do %>
-			<div class="right-side">
+		<div class="right-side">
 			<%= hidden_field_tag 'course_id', course.crse_id %>
-		<%= submit_tag ("Delete"), class: "btn btn-primary btn-xlarge del btn-block" %>
+			<%= submit_tag ("Delete"), class: "btn btn-primary btn-xlarge del btn-block" %>
+		</div>
 		<% end %>
 	<% end %>
 </div>

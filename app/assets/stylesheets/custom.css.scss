@@ -39,7 +39,7 @@ textarea {
 .center h1 {
   margin-bottom: 10px;
 }
-.right-side {float:right; margin-left: auto; margin-right: auto; position:relative; bottom:30px;}
+.right-side {float:left; margin-left: auto; margin-right: auto; position:relative;}
 .center-side { float: none; margin-left: auto; margin-right: auto; width: 200px;}
 
 .custom-top-padding {
@@ -337,6 +337,7 @@ textarea {
 }
 .office-text{
   margin:20px;
+  text-align: left;
 }
 .office-text i{
   font-weight: bold;
@@ -355,7 +356,7 @@ textarea {
 
 .office-text-mobile{
   margin:2px;
-
+  text-align: left;
   line-height:1.2;
 }
 .office-text-mobile i{
@@ -370,6 +371,10 @@ textarea {
   font-size:75%;
   float:left;
   margin-bottom:none;
+}
+
+.office-text-mobile i.mini-mobile-2{
+  font-size:75%;
 }
 
 .office-text-mobile i.inst.mob{
@@ -434,6 +439,7 @@ textarea {
   line-height: 130%;
   font-weight:bold;
   margin-bottom:50px;
+
 }
 .standfirst {
   text-align: center;
