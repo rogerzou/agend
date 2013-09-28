@@ -131,12 +131,12 @@ textarea {
   box-sizing: border-box;
   -webkit-box-shadow: 0 4px 8px 4px rgba(0,0,0,0.25);
   box-shadow: 0 4px 8px 4px rgba(0,0,0,0.25);
-  
+  text-align:center;
   margin-bottom:100px;
   margin-left:0px;
 }
 .profcontainer-in{
-
+  
   @media(min-width: 980px){
     margin-left:75px;
     margin-right:75px;
@@ -170,6 +170,7 @@ textarea {
 .prof-form{
   width:50%;
   float:center;
+  text-align:left;
 }
 
 .inner {
@@ -439,6 +440,7 @@ textarea {
   line-height: 130%;
   font-weight:bold;
   margin-bottom:50px;
+  text-align:left;
 
 }
 .standfirst {

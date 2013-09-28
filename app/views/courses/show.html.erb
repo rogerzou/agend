@@ -12,11 +12,11 @@
     </div>
     <br><br>
   <% else %>
-    <div>
-      <%= link_to "+ Default Session", new_office_hour_path(
-              thisCourse: @thisCourse.id, default: true), class: "btn" %>
-      <%= link_to "+ Update Session", new_office_hour_path(
-              thisCourse: @thisCourse.id, default: false), class: "btn" %>
+    <div class="button-top">
+      <%= link_to "+ New Session", new_office_hour_path(
+              thisCourse: @thisCourse.id, default: true), class: "btn btn-primary btn-xlarge add top side" %>
+      <%= link_to "+ New Update", new_office_hour_path(
+              thisCourse: @thisCourse.id, default: false), class: "btn btn-primary btn-xlarge add top side" %>
     </div>
   <% end %>
   <div>

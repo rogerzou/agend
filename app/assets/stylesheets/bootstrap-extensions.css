@@ -46,6 +46,22 @@
     position: relative;
     bottom: 20px;
   }
+
+  .button-top{
+    margin-bottom: 10px;
+    
+    
+    
+    
+  }
+  .btn-xlarge.add.top{
+    margin-left:10px;
+    float:center;
+    text-align: center;
+    
+
+    
+  }
   
 
   .btn-xlarge:hover, .btn-xlarge:focus {
