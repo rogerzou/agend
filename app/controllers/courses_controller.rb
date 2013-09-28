@@ -17,6 +17,15 @@ class CoursesController < ApplicationController
 	def show
 		@thisCourse = Course.find(params[:id])
 		@myHours = @thisCourse.office_hours
+		@myHoursDefault = Array.new
+		@myHoursUpdate = Array.new
+		@myHours.each do |hour|
+			if hour.default
+				@myHoursDefault << hour
+			else
+				@myHoursUpdate << hour
+			end
+		end
 	end
 
 	def destroy
