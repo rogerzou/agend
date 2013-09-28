@@ -29,9 +29,9 @@
 		<i class="inst mob update"><%c = User.find(Course.find(office_hour.course_id).user_id).sn + ", " + User.find(Course.find(office_hour.course_id)).givenName%> <%=c%> </i>
 		<br>
 		
-		<i>Location:</i>&nbsp;<%c = office_hour.location%> <%=c%>
+		<i>Location:</i>&nbsp;<i class="mini-mobile-2"><%c = office_hour.location%> <%=c%></i>
 		<br>
-		<i>Description:</i>&nbsp;<%c = office_hour.description%> <%=c%>
+		<i>Description:</i>&nbsp;<i class="mini-mobile-2"><%c = office_hour.description%> <%=c%></i>
 		<% end %>
 	</div>
 </div>
