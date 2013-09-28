@@ -1,7 +1,17 @@
 <div class="office-hour inst hidden-phone">
 	<div class="office-text">
 		<% if !office_hour.default %>
-			<i class="course"><%d = office_hour.course.course_title_long %> <%=d%></i>
+			<% d = "" %>
+			<% if !office_hour.course.subject.nil? %>
+				<% d = d + office_hour.course.subject.to_s + " " %>
+			<% end %>
+			<% if !office_hour.course.catalog_nbr.nil? %>
+				<% d = d + office_hour.course.catalog_nbr.to_s + ": " %>
+			<% end %>
+			<% if !office_hour.course.course_title_long.nil? %>
+				<% d = d + office_hour.course.course_title_long.to_s %>
+			<% end %>
+			<i class="course"><%=d%></i>
 			<br>
 			<i>Time:</i>&nbsp;<%a = office_hour.date.strftime('%m/%d/%Y | %I:%M %p')%> <%=a%> <i>to</i> <%b = office_hour.end_time.strftime('%I:%M %p')%> <%=b%>
 			<br>
@@ -21,7 +31,17 @@
 <div class="office-hour inst visible-phone">
 	<div class="office-text-mobile">
 		<% if !office_hour.default %>
-			<i class="course"><%d = office_hour.course.course_title_long %> <%=d%></i>
+			<% d = "" %>
+			<% if !office_hour.course.subject.nil? %>
+				<% d = d + office_hour.course.subject.to_s + " " %>
+			<% end %>
+			<% if !office_hour.course.catalog_nbr.nil? %>
+				<% d = d + office_hour.course.catalog_nbr.to_s + ": " %>
+			<% end %>
+			<% if !office_hour.course.course_title_long.nil? %>
+				<% d = d + office_hour.course.course_title_long.to_s %>
+			<% end %>
+			<i class="course"><%=d%></i>
 			<br>
 				<i class="mini-mobile">
 							<%a = office_hour.date.strftime('%m/%d/%Y|%I:%M %p') %> <%=a%> to 
