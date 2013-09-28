@@ -2,13 +2,13 @@
   <li id="fat-menu" class="dropdown">
     
 
-    <li><%= link_to "Courses", current_user, class: "visible-phone" %><li>
-    <li><%= link_to "Office Hours", office_hours_path, class: "visible-phone" %><li>
-    <li><%= link_to "Sign out", signout_path, method: "delete", class: "visible-phone" %><li>
+    <li><%= link_to "Courses", current_user, class: "visible-phone visible-tablet" %><li>
+    <li><%= link_to "Office Hours", office_hours_path, class: "visible-phone visible-tablet" %><li>
+    <li><%= link_to "Sign out", signout_path, method: "delete", class: "visible-phone visible-tablet" %><li>
     
 
     <% if !current_user.nil? %>
-    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown"><%= current_user.givenName %> <b class="caret"></b></a>
+    <a href="#" class="dropdown-toggle hidden-phone hidden-tablet" data-toggle="dropdown"><%= current_user.givenName %> <b class="caret"></b></a>
     <ul class="dropdown-menu custom" role="menu" aria-labelledby="dropdownMenu">
 
 
