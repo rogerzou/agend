@@ -6,9 +6,9 @@ Agend::Application.routes.draw do
     member do
       post 'student_add_course'
       post 'student_remove_course'
+      get 'user_add_course'
     end
   end
-
 
   resources :sessions
   resources :courses
