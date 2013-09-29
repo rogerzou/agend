@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
   	def student_courses_new
   		if (!self.instructor)
-  			array = []
+  			array = [-120381290]
   			self.student_courses = Marshal.dump(array)
   		end
   	end
