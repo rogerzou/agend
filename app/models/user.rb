@@ -29,20 +29,23 @@ class User < ActiveRecord::Base
 	require "uri"
 	if self.net_id.to_s.length > 1
 		url = "https://streamer.oit.duke.edu/ldap/people"
-		query = "?q="
-		net_id = self.net_id.to_s
-		token_string = "&access_token="
-		access_token = "6b1af6d392b889398917c54a7544806a"
-
-		uri = URI.parse(url + query + net_id + token_string + access_token)
-		response = Net::HTTP.get_response(uri)
+		params = {
+			q: self.net_id.to_s,
+			access_token: "6b1af6d392b889398917c54a7544806a"
+		}
+		response = Net::HTTP.get_response(URI.parse("#{url}?#{params.to_query}"))
 		json_user_object = JSON.parse(response.body)
-		if !json_user_object.nil? && json_user_object.length == 1
-			self.ldapkey = json_user_object[0]["ldapkey"]
-			self.sn = json_user_object[0]["sn"]
-			self.givenName = json_user_object[0]["givenName"]
-			self.display_name = json_user_object[0]["display_name"]
-			return true
+		if json_user_object.kind_of? Array
+			found_user = json_user_object.find do |user|
+				user["netid"].eql? self.net_id
+			end
+			if found_user
+				self.ldapkey = found_user["ldapkey"]
+				self.sn = found_user["sn"]
+				self.givenName = found_user["givenName"]
+				self.display_name = found_user["display_name"]
+				return true
+			end
 		end
 	end
 	return false
