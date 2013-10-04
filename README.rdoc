@@ -1,28 +1,37 @@
-== README
+Agend: Office Hours Made Simpler
+Team: Roger Zou and Manoj Kanagaraj
+Platform: Responsive HTML5
+Demo Link: http://colab-sbx-16.oit.duke.edu/
+Gitorious Link: git@gitorious.oit.duke.edu:agend/agend.git
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+README is divided into two sections: Logic & Structure
 
-Things you may want to cover:
+---------LOGIC---------
+Agend was inspired by our shared frustration with keeping track of all of our instructors’ office hours in trying to manage our weekly planners, especially when sessions suddenly changed because a professor had schedule conflicts. Office hour listings vary between courses: some are written in course syllabi, others might be written on a whiteboard in class, and many might be solely by appointment. There can be even greater variability for larger lecture courses where undergraduate teaching assistants hold sessions at different hours per week. Although the concept of office hours remains consistent between courses--scheduled time by professors and teaching assistants to meet outside of class with students--student confusion about when they occur can often leave them less inclined to take advantage of them. For this reason, we sought to centralize all of Duke’s office hours so that instructors can more effectively post their times and students can quickly and easily refer to them when needed. 
 
-* Ruby version
+We believe that students will find our app valuable because it allows them to easily track office hours for all of their classes each semester in a central location in the DukeMobile app on any mobile, tablet or desktop device. Agend has been constructed with student usability in mind. Using their unique net-id students can quickly sign up and create an account, or log in to an existing account. Upon doing so, they will be redirected to their homepage which lists their current courses for the semester. There are two primary pages, making the design of Agend simple and straightforward: ‘My Current Courses’ and ‘My Office Hours’. Students can add or delete any of their courses through the ‘My Current Courses’ page if their instructors have posted office hours previously through Agend. By clicking on the specific course from the ‘My Current Courses’ page, the user will view all office hours and updates for a particular course.
 
-* System dependencies
+If the user seeks to see all of their courses, they can click on the ‘My Office Hours’ page, which will divide office hour sessions between Weekly Office Hours and Updates. The rationale behind this division is that certain office hour times may remained fixed throughout the semester, so if an Instructor indicates a particular session to be a ‘default’ session, it will recur on a weekly basis. That session will then remain in the ‘Weekly Office Hours’ section until the end of the semester so students can quickly view static meeting times. If, however, the instructor posts a weekly change to their office hours because of some scheduling conflict, these dynamic sessions will be posted under the ‘Updates’ section and will list additional information regarding the exact date of the meeting. After the date has passed, the sessions in the ‘Updates’ section will expire and no longer be listed.
 
-* Configuration
+Agend also provides instructors with a direct interface to rapidly post updates and establish default office hours in seconds. Using the same log-in procedure as for students, instructors will be directed to their homepage, the ‘Manage Courses’ page. Here the user can enter the course ID for the class that they are hosting office hours for. After registering their course, instructors can either click on their course from the ‘Manage Courses’ page or go to the ‘Manage Sessions’ page and create a new session or update. Once directed to the Office Hour form, the user will be encountered by 4 primary fields: Course, Location, Description and Time. Users can select the course(s) they registered, enter the location of where the office hour session will be held, and add any supplementary info in the description field (day of the week, what to bring, whether to schedule by appointment, where exactly to meet within the LINK etc). Finally the instructor would indicate the date and time for the office hour session. If the user is creating a static, default session, then the particular date is irrelevant because the session will be repeated each week. Thus the date only matters if the post is an update session. Finally, the instructor can delete any added office hour sessions on the ‘Manage Sessions’ page. 
 
-* Database creation
+Ultimately, we think that Agend is valuable to DukeMobile users because it has the potential to increase attendance to office hour sessions by students in all departments. This could lead to a greater educational experience for students by giving them more personal interaction with professors. It is vital that Agend be found in a central and accessible location like the DukeMobile app so that finding times is as easy as possible. The greatest limitation of Agend might be that it requires instructors to create an account and post their office hour sessions, but this is unavoidable because if there existed a consistent location where all office hours were posted then this app would not be useful for students. Even though it can literally take an instructor less than a minute to set up their times for students’ use throughout the semester and prevent them from having to answer the same questions from students, it might be difficult to get all instructors to respond and do so without some creative communication or administrative assistance. For now, though, in order to demonstrate the usability of our application, we have created several examples of courses created by test accounts so that a user can test Agend for pure functionality. 
 
-* Database initialization
+-------STRUCTURE-------
+We created Agend using Ruby on Rails in responsive HTML5 intended for the DukeMobile app starting from a clean slate.
 
-* How to run the test suite
+In building Agend we have taken advantage of available technology in Duke’s IT ecosystem: 
 
-* Services (job queues, cache servers, search engines, etc.)
+Agend utilizes the streamer API for curriculum and directory data. The directory was primarily used to validate NetIDs whenever a new user created an account. When the user submits the form, the app requests to Streamer for a list of all the NetIDs that matched the NetID the user submits. If there is an exact NetID match, and the NetID isn’t already used on Agend, then a new account can be created. This then will extract any other relevant identifying information regarding the user (first name, last name, etc.). However, in the future our primary goal is to implement Shibboleth for our application. This would ensure that the real Duke password associated with the NetID is used for authentication and prevent malicious users from creating accounts using other individual’s NetIDs. Furthermore, it would prevent students from creating instructor accounts if they are not authorized. 
 
-* Deployment instructions
+The Curriculum API is used for retrieving course data whenever a user designated as an instructor enters a unique Course ID. Then, any student is able to search and follow the course/section only for courses in the current semester, which lists all its office hours. We use Course ID because of its uniqueness and because we sought to select a course and section based on a single number to make it as easy as possible for an instructor to add a course. However, after talking with Michael Faber and Mark McCahill during this past week’s co-lab, we have learned that in the near future we might be able to use OAuth to access course data from SISS itself for a particular user. If granted such access, this will allow the student to already have their courses pre-loaded based on their semester course load without having to manually add them. This would also make it easier for instructors because they would not need to know their class Course ID. 
 
-* ...
+In building the user interface, we used a combination of HTML5, CSS3 and some javascript in order to make our application mobile-responsive for an elegant and direct experience on multiple devices. For this reason, we encourage you to test out Agend on a desktop browser in addition to a mobile browser in order to experience our responsive design.
+
+Agend is built using the Model-View-Controller architectural pattern. It has three models (users, courses, office hours) along with logical relationships between them. For example, certain users (instructors) may ‘have’ courses, and the courses themselves ‘have’ office hours. This ensures that if a course is deleted, all office hours associated with a particular course are also deleted. Every time an account is created or a professor adds a course to the database, a request is sent to the Streamer API for additional data to store in the database, such as the full name associated with a NetID, or the Monday-Friday meet times for course sections. 
+
+Agend is hosted on a bitnami virtual machine provided by OIT, accessible through http://colab-sbx-16.oit.duke.edu/. 
+
+Our application code can be found in its entirety publicly on Gitorious at git@gitorious.oit.duke.edu:agend/agend.git
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
