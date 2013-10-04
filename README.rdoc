@@ -2,7 +2,7 @@ Agend: Office Hours Made Simpler
 Team: Roger Zou and Manoj Kanagaraj
 Platform: Responsive HTML5
 Demo Link: http://colab-sbx-16.oit.duke.edu/
-Gitorious Link: git@gitorious.oit.duke.edu:agend/agend.git
+Gitorious Link: https://gitorious.oit.duke.edu/agend
 
 README is divided into two sections: Logic & Structure
 
@@ -32,6 +32,6 @@ Agend is built using the Model-View-Controller architectural pattern. It has thr
 
 Agend is hosted on a bitnami virtual machine provided by OIT, accessible through http://colab-sbx-16.oit.duke.edu/. 
 
-Our application code can be found in its entirety publicly on Gitorious at git@gitorious.oit.duke.edu:agend/agend.git
+Our application code can be found in its entirety publicly on Gitorious at https://gitorious.oit.duke.edu/agend
 
 
