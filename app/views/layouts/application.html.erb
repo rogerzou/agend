@@ -44,22 +44,23 @@
 
   <div class="visible-phone">
     <%= render 'layouts/header' %>
-    
-    <% if current_page? (root_url) or current_page? (new_session_path) or current_page? (new_user_path)%>   
-      <%= yield %> 
-    <% else %>
-      <div class="row-fluid user">
-        <!-- <div class="prof-mobile">
-          <%= render 'layouts/side_bar' %>
-        </div> -->
-        <div class="prof-mobile">
-          <%= render 'layouts/messages' %>
-          <%= yield %>
+    <div class="custom-top-padding">
+      <%= render 'layouts/messages' %>
+      <% if current_page? (root_url) or current_page? (new_session_path) or current_page? (new_user_path)%>   
+        <%= yield %> 
+      <% else %>
+        <div class="row-fluid user">
+          <!-- <div class="prof-mobile">
+            <%= render 'layouts/side_bar' %>
+          </div> -->
+          <div class="prof-mobile">
+            
+            <%= yield %>
+          </div>
         </div>
-      </div>
-    <% end %>
-    <%#= debug(params) if Rails.env.development? %>
-    
+      <% end %>
+      <%#= debug(params) if Rails.env.development? %>
+    </div>
   </div>
 
 
