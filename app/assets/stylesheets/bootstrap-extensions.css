@@ -373,6 +373,7 @@
 
 .table-condensed.super{
   padding: 2px 3px;
+  font-size: 8px;
 }
 
 .table th, .table td{
