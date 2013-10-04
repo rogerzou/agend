@@ -5,6 +5,10 @@ class OfficeHoursController < ApplicationController
 		@courses = current_user.courses
 	end
 
+	def show
+		@course = Course.find(params[:id])
+	end
+
 	def create
 		@newOfficeHour = OfficeHour.new(office_hour_params)
 		if @newOfficeHour && @newOfficeHour.save

@@ -13,9 +13,9 @@
 	<% @allCourses.sort { |a,b| a.course_title_long.downcase <=> b.course_title_long.downcase }.each do |course| %>
 		<tbody>
 			<tr>
-			<td><%= course.subject %></td>
-			<td><%= course.catalog_nbr.to_s %></td>
-			<td><%= course.course_title_long %></td>
+			<td><%= link_to course.subject, office_hour_path(course) %></td>
+			<td><%= link_to course.catalog_nbr.to_s, office_hour_path(course) %></td>
+			<td><%= link_to course.course_title_long, office_hour_path(course) %></td>
 			<td>
 			<%= form_tag(controller: "users", action: "student_add_course") do %>
 				<div><%= hidden_field_tag 'course_id', course.crse_id %></div>
