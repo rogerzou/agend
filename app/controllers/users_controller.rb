@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 		course_ids = Marshal.load(current_user.student_courses)
 		@myCourses = Course.where(crse_id: course_ids)
 		@allCourses = Course.all - @myCourses
+		@allCourses.sort! { |a,b| [a.subject, a.catalog_nbr, a.course_title_long] <=> [b.subject, b.catalog_nbr, b.course_title_long] }
 	end
 
 	def student_add_course
