@@ -46,7 +46,13 @@
     position: relative;
     bottom: 20px;
   }
+  .btn-xlarge.add.crse{
+      
+      padding: 3px 6px;
+      font-size: 10px;
+      width:50px;
 
+    }
   .button-top{
     margin-bottom: 10px;
     
@@ -365,7 +371,13 @@
 
 
 
+.table-condensed.super{
+  padding: 2px 3px;
+  
+  
+  
+}
 
-
-
-
+.table th, .table td{
+  line-height:12px;
+}

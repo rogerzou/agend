@@ -3,16 +3,6 @@ class OfficeHoursController < ApplicationController
 	def new
 		@office_hour = OfficeHour.new
 		@courses = current_user.courses
-=begin
-		@thisCourse = nil
-		if (!params[:thisCourse].nil?)
-			@thisCourse = Course.find(params[:thisCourse])
-		end
-		@default = false
-		if (!params[:default].nil?)
-			@default = params[:default]
-		end
-=end
 	end
 
 	def create

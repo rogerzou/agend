@@ -14,7 +14,7 @@
 				<i class="course"><%=d%></i>
 				<br>
 
-				<i>Time:</i>&nbsp;<%a = office_hour.date.strftime('%I:%M %p')%> <%=a%> <i>to</i> 
+				<i>Time:</i>&nbsp;<%a = office_hour.start_time.strftime('%I:%M %p')%> <%=a%> <i>to</i> 
 				<%b = office_hour.end_time.strftime('%I:%M %p')%> <%=b%>
 
 				<br>
@@ -52,7 +52,7 @@
 				<i class="course"><%=d%></i>
 				<br>
 						<i class="mini-mobile">
-							<%a = office_hour.date.strftime('%I:%M %p') %> <%=a%> to 
+							<%a = office_hour.start_time.strftime('%I:%M %p') %> <%=a%> to 
 							<%b = office_hour.end_time.strftime('%I:%M %p') %> <%=b%>
 						</i>
 

@@ -1,5 +1,5 @@
 <% if !current_user.instructor %>
-  <h1 class="welcome">My Office Hours</h1>
+  <h1 class="welcome">Course Office Hours</h1>
 <% else %>
   <h1 class="welcome"><%= @thisCourse.course_title_long %></h1>
 <% end %>
@@ -20,7 +20,20 @@
     </div>
   <% end %>
   <div>
-    <%= render @myHoursDefault, default: true, thisCourse: @thisCourse.id %>
-    <%= render @myHoursUpdate, default: false, thisCourse: @thisCourse.id %>
+      <% @myHoursDefault.each do |office_hour| %>
+        <% if current_user.instructor %>
+        <%= render 'office_hours/instructor_default', office_hour: office_hour %>
+        <% else %>
+        <%= render 'office_hours/student_default', office_hour: office_hour %>
+        <% end %>
+      <% end %>
+      <% @myHoursUpdate.each do |office_hour| %>
+        <% if current_user.instructor %>
+        <%= render 'office_hours/instructor_update', office_hour: office_hour %>
+        <% else %>
+        <%= render 'office_hours/student_update', office_hour: office_hour %>
+        <% end %>
+      <% end %>
+
   </div>
 </div>
