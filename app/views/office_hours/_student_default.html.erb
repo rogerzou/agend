@@ -13,7 +13,7 @@
 		<% end %>
 		<i class="course"><%=d%></i>
 		<br><br>
-				<%a = office_hour.date.strftime('%I:%M %p') %> <%=a%> to 
+				<%a = office_hour.start_time.strftime('%I:%M %p') %> <%=a%> to 
 				<%b = office_hour.end_time.strftime('%I:%M %p') %> <%=b%>
 		<i class="inst"><%c = User.find(Course.find(office_hour.course_id).user_id).sn + ", " + User.find(Course.find(office_hour.course_id).user_id).givenName%> <%=c%> </i>
 		<br>
@@ -38,7 +38,7 @@
 			<i class="course"><%=d%></i>
 		<br>
 			<i class="mini-mobile">
-				<%a = office_hour.date.strftime('%I:%M %p') %> <%=a%> to 
+				<%a = office_hour.start_time.strftime('%I:%M %p') %> <%=a%> to 
 				<%b = office_hour.end_time.strftime('%I:%M %p') %> <%=b%>
 			</i>
 		
