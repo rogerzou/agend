@@ -374,7 +374,7 @@
 .table-condensed.super{
   padding: 2px 3px;
   @media(max-width: 767px){
-    font-size:10px;
+    font-size:8px;
   }
   
   
