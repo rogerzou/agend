@@ -1,13 +1,28 @@
 <h1 class="welcome" %> <%= @course.course_title_long %> </h1>
-<%= @course.acad_career %>
-<br>
-<%= @course.class_nbr %>
-<br>
-<%= @course.ssr_component %>
-<br>
-<%= @course.ssr_instr_long %>
-<br>
-<%= @course.ssr_mtg_dt_long %>
-<br>
-<%= @course.ssr_mtg_loc_long %>
+<div class="course-info">
+	<br>
+	<i>Course:</i> 	<br> <%= @course.subject %> <%= @course.catalog_nbr %>
+	<br>
+	<br>
+	<i>Instructor:</i> <br>		<%= @course.ssr_instr_long %>
+	<br>
+	<br>
+	<i>Semester:</i> <br>	<%= @course.ssr_mtg_dt_long %>
+	<br>
+	<br>
+	<i>Location:</i> <br>	<%= @course.ssr_mtg_loc_long %>
+	<br>
+	<br>
+	<i>Normal Class Time:</i> <br>	<%= @course.ssr_mtg_sched_long %>
+	<br>
+	<br>
+	<i>Level:</i> <br>	<%= @course.acad_career %>
+	<br>
+	<br>
+</div>
+
+<%= form_tag(controller: "users", action: "student_add_course") do %>
+				<div><%= hidden_field_tag 'course_id', @course.crse_id %></div>
+				<%= submit_tag "Add", class: "btn btn-primary btn-xlarge btn-block" %>
+			<% end %>
 <br>
