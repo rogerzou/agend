@@ -27,16 +27,16 @@ class OfficeHour < ActiveRecord::Base
 	validates :end_time, presence: true, :if => :valid_end_date?
 	validates :location,  presence: true
 	validates :description, length: { maximum: 200 }
-	validate :not_past_start, :not_past_end, :valid_date_diff
+	validate :valid_date_diff
   validates :default, :inclusion => {:in => [true, false]}
 
 private 
   def valid_start_date?
-    ((DateTime.parse(start_date) rescue ArgumentError) == ArgumentError)
+    ((DateTime.parse(start_time) rescue ArgumentError) == ArgumentError)
   end
 
   def valid_end_date?
-    ((DateTime.parse(end_date) rescue ArgumentError) == ArgumentError)
+    ((DateTime.parse(end_time) rescue ArgumentError) == ArgumentError)
   end
 
   def not_past_start

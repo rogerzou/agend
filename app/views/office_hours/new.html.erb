@@ -1,7 +1,7 @@
 
   <h1 class="welcome"> Create Office Hours </h1>
 
-<%= form_for(@office_hour) do |f| %>
+<%= form_for(@newOfficeHour) do |f| %>
   <div class="field profcontainer-in">
 
 
@@ -35,13 +35,10 @@
     
       
       <%= f.label :start_time %>
-      <%= f.time_select :start_time, :ignore_date => true, :ampm => true %>
+      <%= f.time_select :start_time, :ampm => true, :default => Time.now %>
 
       <%= f.label :end_time %>
-      <%= f.date_select :end_time, :start_year => Time.now.year, :end_year => Time.now.year + 4, :use_short_month => true %>
-      <br>End Time <br>
-      
-      <%= f.time_select :end_time, :ignore_date => true, :ampm => true %>
+      <%= f.time_select :end_time, :ampm => true, :default => Time.now %>
     </div>
 
     

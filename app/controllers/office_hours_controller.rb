@@ -1,7 +1,7 @@
 class OfficeHoursController < ApplicationController
 
 	def new
-		@office_hour = OfficeHour.new
+		@newOfficeHour = OfficeHour.new
 		@courses = current_user.courses
 	end
 
@@ -22,7 +22,7 @@ class OfficeHoursController < ApplicationController
 			flash[:error] = "Problem with adding office hour session."
 			redirect_to new_office_hour_path
 		end
-
+	Rails.logger.info(@newOfficeHour.errors.inspect) 
 	end
 
 	def index
